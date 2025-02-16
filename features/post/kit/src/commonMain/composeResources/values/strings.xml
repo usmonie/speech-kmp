@@ -1,0 +1,24 @@
+<resources>
+    <plurals name="post_kit_replies">
+        <item quantity="zero">No replies</item>
+        <item quantity="one">reply</item>
+        <item quantity="other">replies</item>
+    </plurals>
+    <plurals name="post_kit_likes">
+        <item quantity="zero">No one liked</item>
+        <item quantity="one">like</item>
+        <item quantity="other">likes</item>
+    </plurals>
+    <plurals name="post_kit_reposts">
+        <item quantity="zero">No one reposted</item>
+        <item quantity="one">repost</item>
+        <item quantity="other">reposts</item>
+    </plurals>
+
+    <string name="post_kit_replying_to">Replying to </string>
+    <string name="post_kit_reply">Reply</string>
+
+    <!--User strings-->
+    <string name="user_kit_user_link">@%1$s</string>
+
+</resources>
