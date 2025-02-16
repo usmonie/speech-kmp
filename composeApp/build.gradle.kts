@@ -37,6 +37,8 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.core.kit)
+            implementation(projects.compass.core)
+            implementation(projects.compass.state)
             implementation(projects.features.timeline.kit)
             implementation(projects.features.timeline.ui)
 
