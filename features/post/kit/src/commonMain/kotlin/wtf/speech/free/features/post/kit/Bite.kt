@@ -2,6 +2,7 @@
 
 package wtf.speech.free.features.post.kit
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -190,15 +191,20 @@ public data class Bite(
                             ) {
                                 Body5Text(createdAt)
 
-                                InteractionsCount(
-                                    {},
-                                    likesCount,
-                                    pluralStringResource(Res.plurals.post_kit_likes, likesCount),
-                                    false,
-                                    SpeechTheme.typography.body2,
-                                    SpeechTheme.typography.body2,
-                                    color = SpeechTheme.colors.textSecondary,
-                                )
+                                AnimatedVisibility(likesCount > 0) {
+                                    InteractionsCount(
+                                        {},
+                                        likesCount,
+                                        pluralStringResource(
+                                            Res.plurals.post_kit_likes,
+                                            likesCount
+                                        ),
+                                        false,
+                                        SpeechTheme.typography.body2,
+                                        SpeechTheme.typography.body2,
+                                        color = SpeechTheme.colors.textSecondary,
+                                    )
+                                }
                                 ReplyButton { onReplyClick(this@Bite) }
                             }
 
@@ -297,25 +303,30 @@ public data class Bite(
         modifier: Modifier = Modifier
     ) {
         Row(modifier, verticalAlignment = Alignment.CenterVertically) {
-            InteractionsCount(
-                pluralStringResource(Res.plurals.post_kit_likes, likesCount),
-                likesCount
-            )
+            AnimatedVisibility(likesCount > 0) {
+                InteractionsCount(
+                    pluralStringResource(Res.plurals.post_kit_likes, likesCount),
+                    likesCount
+                )
+            }
+
+            Icon(SpeechIcons.Statuses.Elipse, contentDescription = null)
+            AnimatedVisibility(repliesCount > 0) {
+                InteractionsCount(
+                    pluralStringResource(Res.plurals.post_kit_replies, repliesCount),
+                    repliesCount
+                )
+            }
 
             Icon(SpeechIcons.Statuses.Elipse, contentDescription = null)
 
-            InteractionsCount(
-                pluralStringResource(Res.plurals.post_kit_replies, repliesCount),
-                repliesCount
-            )
-
-            Icon(SpeechIcons.Statuses.Elipse, contentDescription = null)
-
-            InteractionsCount(
-                { onRepostClick(this@Bite) },
-                repostCount,
-                pluralStringResource(Res.plurals.post_kit_reposts, repostCount),
-            )
+            AnimatedVisibility(repostCount > 0) {
+                InteractionsCount(
+                    { onRepostClick(this@Bite) },
+                    repostCount,
+                    pluralStringResource(Res.plurals.post_kit_reposts, repostCount),
+                )
+            }
         }
     }
 
